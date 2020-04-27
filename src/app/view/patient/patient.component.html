@@ -1,0 +1,36 @@
+<p>Patient</p>
+{{patient.lastName}} {{patient.firstName}}
+
+<form *ngIf="patient.requests == null" [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+  <h3>Request advice</h3>
+  <label>
+    Cough:
+    <input type="checkbox" formControlName="cough">
+  </label>
+  <label>
+    Fever:
+    <input type="checkbox" formControlName="fever">
+  </label>
+  <label>
+    Difficulty to breath:
+    <input type="checkbox" formControlName="difficultyToBreath">
+  </label>
+  <label>
+    Doctor:
+    <select formControlName="doctor">
+      <option [value]="doctor.id" *ngFor="let doctor of doctors">{{doctor.firstName}} {{doctor.lastName}}</option>
+    </select>
+  </label>
+
+  <button type="submit">Submit</button>
+</form>
+
+
+<div *ngIf="patient.requests != null">
+  <div *ngIf="patient.requests.covidStatus != null; else notAssessed">{{patient.requests.covidStatus}}</div>
+  <ng-template #notAssessed>
+    Not Assessed by doctor {{patient.requests.doctor.lastName}} {{patient.requests.doctor.firstName}} yet
+  </ng-template>
+</div>
+
+<p><a [routerLink]="['/patientlist']">Patient List</a></p>

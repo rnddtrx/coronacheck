@@ -1,0 +1,7 @@
+<p>Liste des patients</p>
+<button (click)="createPatient()">Ajouter un patient</button>
+<ul>
+  <li *ngFor="let patient of patients">
+      <a [routerLink]="['/patient/'+patient.id]">{{patient.lastName}} {{patient.firstName}}</a>
+  </li>
+</ul>

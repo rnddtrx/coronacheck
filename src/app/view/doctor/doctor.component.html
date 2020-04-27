@@ -1,0 +1,17 @@
+<h1>Doctor</h1>
+{{doctor.lastName}} {{doctor.firstName}}
+
+<h1>Requêtes de diagnostic</h1>
+<ul>
+  <li *ngFor="let request of doctor.requests">
+      {{request.patient.lastName}} {{request.patient.firstName}} {{request.cough}} {{request.fever}} {{request.difficutyToBreath}} <input
+      type="checkbox"
+      [checked]="request.covidStatus"
+      (change)="switch(request)"
+      />
+  </li>
+</ul>
+
+
+
+<p><a [routerLink]="['/doctorlist']">Doctor List</a></p>
